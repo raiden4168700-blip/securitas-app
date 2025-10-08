@@ -1,0 +1,132 @@
+/* src/pages/AuthPage.css */
+
+/* --- Style général de la page --- */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Prend toute la hauteur de l'écran */
+  background-color: #5634d3; 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* --- Le conteneur principal du formulaire --- */
+.auth-container {
+  background-color: #1fc7a3;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1 );
+  width: 100%;
+  max-width: 400px; /* Limite la largeur pour une meilleure lisibilité */
+  text-align: center;
+}
+
+/* --- La section des logos --- */
+.logos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Espace entre les logos */
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-height: 40px; /* Limite la hauteur des logos */
+  max-width: 150px;
+}
+
+/* --- Titres et textes --- */
+.auth-container h1 {
+  font-size: 24px;
+  color: #1c1e21;
+  margin-bottom: 10px;
+}
+
+.auth-container p {
+  font-size: 16px;
+  color: #606770;
+  margin-bottom: 30px;
+}
+
+/* --- Style pour le composant AuthForm --- */
+/* On va styliser les éléments de AuthForm directement depuis ici */
+
+.auth-container form div {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.auth-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #4b4f56;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box; /* Assure que le padding n'augmente pas la largeur */
+}
+
+.auth-container input:focus {
+  border-color: #1877f2; /* Couleur bleue au focus */
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+/* --- Boutons --- */
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+/* Bouton principal (Submit) */
+.auth-container form button {
+  background-color: #1877f2; /* Bleu Facebook/pro */
+  color: white;
+  margin-top: 10px;
+}
+
+.auth-container form button:hover {
+  background-color: #166fe5;
+}
+
+/* Bouton secondaire (Changer de mode) */
+.auth-container > button {
+  background-color: #e4e6eb;
+  color: #4b4f56;
+  margin-top: 15px;
+}
+
+.auth-container > button:hover {
+  background-color: #d8dbdf;
+}
+
+/* --- Messages d'erreur/succès --- */
+.auth-container .message {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.message.error {
+  color: #a94442;
+  background-color: #f2dede;
+}
+
+.message.success {
+  color: #3c763d;
+  background-color: #dff0d8;
+}
