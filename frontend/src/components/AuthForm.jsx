@@ -11,7 +11,7 @@ const AuthForm = ({ onLoginSuccess }) => {
     event.preventDefault();
     setMessage('');
 
-    const url = `http://localhost:5000/api/auth/login`;
+    const url = `https://securitas-app.onrender.com/api/auth/login`;
 
     try {
       const response = await fetch(url, {

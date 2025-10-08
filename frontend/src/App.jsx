@@ -104,7 +104,7 @@ const DataTable = ({ data, type, onAdd, onDelete }) => {
     // Cas 1: C'est un fichier déjà uploadé (notre objet personnalisé)
     if (file && file.path) {
       // On construit l'URL complète vers le backend
-      const fileUrl = `http://localhost:5000${file.path}`;
+      const fileUrl = `https://securitas-app.onrender.com${file.path}`;
       window.open(fileUrl, '_blank' );
     } 
     // Cas 2: C'est un fichier local, pas encore uploadé (un vrai objet File)
@@ -236,7 +236,7 @@ const FileList = ({ files, onDelete }) => {
     
     
     if (file && file.path) {
-      const fileUrl = `http://localhost:5000${file.path}`;
+      const fileUrl = `https://securitas-app.onrender.com${file.path}`;
       window.open(fileUrl, '_blank' );
     } 
     else if (file instanceof File) { 
@@ -415,7 +415,7 @@ const DocumentTable = ({ data, type, onAdd, onDelete, title }) => {
 
   const handleViewFile = (file) => {
     if (file && typeof file.path === 'string') {
-      window.open(`http://localhost:5000${file.path}`, '_blank' );
+      window.open(`https://securitas-app.onrender.com${file.path}`, '_blank' );
     } else {
       console.error("Format de fichier non reconnu:", file);
     }
@@ -523,7 +523,7 @@ function App() {
           return;
         }
 
-        const response = await fetch('http://localhost:5000/api/data/all', {
+        const response = await fetch('https://securitas-app.onrender.com/api/data/all', {
           headers: { 'Authorization': `Bearer ${token}` },
         } );
 
@@ -584,7 +584,7 @@ function App() {
       if (newEntry.file && typeof newEntry.file.size === 'number') {
         const formData = new FormData();
         formData.append('file', newEntry.file);
-        const uploadResponse = await fetch('http://localhost:5000/api/upload', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData } );
+        const uploadResponse = await fetch('https://securitas-app.onrender.com/api/upload', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData } );
         if (!uploadResponse.ok) throw new Error(`Upload échoué: ${await uploadResponse.text()}`);
         const uploadResult = await uploadResponse.json();
         entryData.file = { name: newEntry.name || newEntry.file.name, path: uploadResult.filePath, uploadedAt: new Date().toISOString() };
@@ -592,7 +592,7 @@ function App() {
         delete entryData.file;
       }
 
-      const response = await fetch(`http://localhost:5000/api/data/${type}`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(entryData ) });
+      const response = await fetch(`https://securitas-app.onrender.com/api/data/${type}`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(entryData ) });
       if (!response.ok) throw new Error(`Erreur serveur: ${await response.text()}`);
       
       const addedItemFromServer = await response.json();
@@ -609,7 +609,7 @@ function App() {
     if (!window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) return;
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/data/${type}/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } } );
+      const response = await fetch(`https://securitas-app.onrender.com/api/data/${type}/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } } );
       if (!response.ok) throw new Error('Erreur lors de la suppression sur le serveur.');
       
       setData(prev => ({ ...prev, [type]: prev[type].filter(item => item._id !== id) }));
@@ -636,7 +636,7 @@ function App() {
       const token = localStorage.getItem('token');
 
       // 1. Envoyer le fichier au backend
-      const uploadResponse = await fetch('http://localhost:5000/api/upload', {
+      const uploadResponse = await fetch('https://securitas-app.onrender.com/api/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
