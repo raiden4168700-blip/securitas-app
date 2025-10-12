@@ -30,3 +30,27 @@ router.post("/login", async (req, res) => {
 });
 
 export default router;
+
+// ➡️ REGISTER
+router.post("/register", async (req, res) => {
+  const { username, email, password } = req.body;
+
+  try {
+    // Vérifie si l'utilisateur existe déjà
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: "Email déjà utilisé" });
+    }
+
+    const newUser = await User.create({ username, email, password });
+
+    res.status(201).json({
+      _id: newUser._id,
+      username: newUser.username,
+      email: newUser.email,
+      token: generateToken(newUser._id),
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
